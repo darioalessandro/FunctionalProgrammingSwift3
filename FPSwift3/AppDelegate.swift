@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BrightFutures
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let p = Patient(name: "George Carlin", gender: .masculine, age: 70, toraxState: .closed)
+        let f = FunctionalAsyncDoctor().performHeartSurgery(p: p)
+        f.map { p in
+            print("patient is ready \(p)")
+        }.onFailure { (error) in
+            print("error \(error)")
+        }
         return true
     }
 
@@ -39,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
 
 

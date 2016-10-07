@@ -9,24 +9,30 @@
 import UIKit
 import BrightFutures
 
-enum Gender {
+public enum Gender {
     case masculine
     case femenine
 }
 
-enum OrganState {
+public enum OrganState {
     case open
     case closed
 }
 
-struct Patient {
+public enum HeartSurgeryError : Error {
+    case heartAttackWhileOpeningTorax
+    case heartAttackWhileInsertingStent
+    case heartAttackClosingTorax
+}
+
+public struct Patient {
     
     let name : String
     let gender : Gender
     let age : UInt
     let toraxState : OrganState
     
-    func openTorax() -> Patient {
+    public func openTorax() -> Patient {
         switch toraxState {
         case .open:
             return self
@@ -35,7 +41,7 @@ struct Patient {
         }
     }
     
-    func closeTorax() -> Patient {
+    public func closeTorax() -> Patient {
         switch toraxState {
         case .closed:
             return self
@@ -45,11 +51,11 @@ struct Patient {
     }
 }
 
-class LameSyncDoctor {
+public class LameSyncDoctor {
     
-    var patient : Patient?
+    public var patient : Patient?
     
-    func performHeartSurgery() -> Bool {
+    public func performHeartSurgery() -> Bool {
         do {
             try openTorax()
             try insertCoronaryStent()
@@ -61,21 +67,21 @@ class LameSyncDoctor {
         }
     }
     
-    func openTorax() throws {}
+    internal func openTorax() throws {}
     
-    func insertCoronaryStent() throws {}
+    internal func insertCoronaryStent() throws {}
     
-    func closeTorax() throws {}
+    internal func closeTorax() throws {}
 
 }
 
-class LameAsyncDoctor {
+public class LameAsyncDoctor {
     
-    typealias OnResult = (_ p : Patient, _ e : NSError?) -> ()
+    public typealias OnResult = (_ p : Patient, _ e : NSError?) -> ()
     
     var patient : Patient?
     
-    func performHeartSurgery(onResult : OnResult) -> Void {
+    public func performHeartSurgery(onResult : OnResult) -> Void {
         openTorax { (p1, surgeryError) in
             if let _ = surgeryError {
                 onResult(p1,surgeryError)
@@ -93,50 +99,48 @@ class LameAsyncDoctor {
         }
     }
     
-    func openTorax(onResult : OnResult) -> Void {}
+    internal func openTorax(onResult : OnResult) -> Void {}
     
-    func insertCoronaryStent(onResult : OnResult) -> Void {}
+    internal func insertCoronaryStent(onResult : OnResult) -> Void {}
     
     func closeTorax(onResult : OnResult) -> Void {}
     
 }
 
-enum HeartSurgeryError : Error {
-    case heartAttackWhileOpeningTorax
-    case heartAttackWhileInsertingStent
-    case heartAttackClosingTorax
-}
 
-class FunctionalAsyncDoctor {
+public class FunctionalAsyncDoctor {
     
-    func performHeartSurgery(p : Patient) -> Future<Patient,HeartSurgeryError> {
+    let queue : DispatchQueue = DispatchQueue.init(label: "doctorQueue")
+    
+    public func performHeartSurgery(p : Patient) -> Future<Patient,HeartSurgeryError> {
         return self.openTorax(p : p).flatMap {
                self.insertCoronaryStent(p: $0)}.flatMap {
                self.closeTorax(p: $0)}
     }
     
-    func openTorax(p : Patient) -> Future<Patient,HeartSurgeryError> {
+    internal func openTorax(p : Patient) -> Future<Patient,HeartSurgeryError> {
         return Future { complete in
-            DispatchQueue.global().async {
-                Thread.sleep(forTimeInterval: 2000)
+            queue.async {
+                Thread.sleep(forTimeInterval: 2)
                 complete(.success(p))
             }
         }
     }
     
-    func insertCoronaryStent(p : Patient) -> Future<Patient,HeartSurgeryError> {
+    internal func insertCoronaryStent(p : Patient) -> Future<Patient,HeartSurgeryError> {
         return Future { complete in
-            DispatchQueue.global().async {
-                Thread.sleep(forTimeInterval: 2000)
-                complete(.success(p))
+            queue.async {
+                Thread.sleep(forTimeInterval: 2)
+                //complete(.success(p))
+                complete(.failure(HeartSurgeryError.heartAttackWhileInsertingStent))
             }
         }
     }
     
-    func closeTorax(p : Patient) -> Future<Patient,HeartSurgeryError> {
+    internal func closeTorax(p : Patient) -> Future<Patient,HeartSurgeryError> {
         return Future { complete in
-            DispatchQueue.global().async {
-                Thread.sleep(forTimeInterval: 2000)
+            queue.async {
+                Thread.sleep(forTimeInterval: 2)
                 complete(.success(p))
             }
         }
