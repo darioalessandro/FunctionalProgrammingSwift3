@@ -72,11 +72,34 @@ public class LameSyncDoctor {
         }
     }
     
+    public func performHeartSurgery2() throws -> Patient {
+        try openTorax()
+        try insertCoronaryStent()
+        try closeTorax()
+        return self.patient!
+    }
+    
     private func openTorax() throws {}
     
     private func insertCoronaryStent() throws {}
     
     private func closeTorax() throws {}
+
+}
+
+public class LameSyncDoctor2 {
+
+    public var patient : Patient?
+
+    public func performHeartSurgery() -> Bool {
+        return openTorax() && insertCoronaryStent() && closeTorax()
+    }
+
+    private func openTorax() -> Bool { return true }
+
+    private func insertCoronaryStent() -> Bool { return true }
+
+    private func closeTorax() -> Bool  { return true }
 
 }
 
