@@ -17,12 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let p = Patient(name: "George Carlin", gender: .masculine, age: 70, toraxState: .closed)
+        let p = Patient(name: "George Carlin", gender: .masculine, age: 70, toraxState: .closed, hasStent: false)
         let f = FunctionalAsyncDoctor().performHeartSurgery(p: p)
         f.map { p in
             print("patient is ready \(p)")
         }.onFailure { (error) in
             print("error \(error)")
+        }
+
+        let lameAsyncDoctor = LameAsyncDoctor()
+        lameAsyncDoctor.patient = p
+        lameAsyncDoctor.performHeartSurgery { (patient, error) in
+            if let e = error {
+                print("error : \(e)")
+            } else {
+                print("success \(patient)")
+            }
         }
         return true
     }
