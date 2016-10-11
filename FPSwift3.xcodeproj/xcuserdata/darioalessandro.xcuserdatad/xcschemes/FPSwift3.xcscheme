@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06768E9D1DA70FDD00BE951F"
-               BuildableName = "FPSwift3"
+               BuildableName = "FPSwift3.app"
                BlueprintName = "FPSwift3"
                ReferencedContainer = "container:FPSwift3.xcodeproj">
             </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06768E9D1DA70FDD00BE951F"
-            BuildableName = "FPSwift3"
+            BuildableName = "FPSwift3.app"
             BlueprintName = "FPSwift3"
             ReferencedContainer = "container:FPSwift3.xcodeproj">
          </BuildableReference>

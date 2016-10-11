@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("success \(patient)")
             }
         }
+        
+        let s : Int? = 4
+        
+        print("s = \(s.filter {$0 > 3})")
         return true
     }
 
