@@ -19,8 +19,7 @@ extension Dictionary {
     mutating func filterInPlace(_ isIncluded: (Key, Value) throws -> Bool) rethrows -> [Key : Value] {
         try self.forEach { (key: Key, value: Value) in
             if try !isIncluded(key,value) {self.removeValue(forKey: key)}
-        }
-        
+        }        
         return self
     }
 }
