@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0615675C1DADC6F200CE8D1B /* Dictionary + filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615675B1DADC6F200CE8D1B /* Dictionary + filter.swift */; };
 		06768EA21DA70FDD00BE951F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06768EA11DA70FDD00BE951F /* AppDelegate.swift */; };
 		06768EA41DA70FDD00BE951F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06768EA31DA70FDD00BE951F /* ViewController.swift */; };
 		06768EA71DA70FDD00BE951F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06768EA51DA70FDD00BE951F /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0615675B1DADC6F200CE8D1B /* Dictionary + filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary + filter.swift"; sourceTree = "<group>"; };
 		06768E9E1DA70FDD00BE951F /* FPSwift3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FPSwift3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06768EA11DA70FDD00BE951F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06768EA31DA70FDD00BE951F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				06F4EA551DA7570700785188 /* SideEffects.swift */,
 				06F0B6121DA7E642003186E1 /* Bank.swift */,
 				06F1A5511DAD120800164156 /* Optional + filter.swift */,
+				0615675B1DADC6F200CE8D1B /* Dictionary + filter.swift */,
 			);
 			path = FPSwift3;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0615675C1DADC6F200CE8D1B /* Dictionary + filter.swift in Sources */,
 				06F0B6131DA7E642003186E1 /* Bank.swift in Sources */,
 				06F1A5521DAD120800164156 /* Optional + filter.swift in Sources */,
 				06768EA41DA70FDD00BE951F /* ViewController.swift in Sources */,
