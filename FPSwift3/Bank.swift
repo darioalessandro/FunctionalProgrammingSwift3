@@ -43,10 +43,24 @@ class Bank {
         return accounts[account].map {return $0.balance}
     }
     
-    func filterAccounts(p : (Account) -> Bool) -> [Int : Account] {
-        return accounts.filterCopy { (key: Int, value: Account) -> Bool in
-            return p(value)
+    func filterAccounts0(f : (Account) -> Bool) -> [Int : Account] {
+        var newDict = [Int : Account]()
+        for accountTuple in self.accounts {
+            if f(accountTuple.value) {
+                newDict[accountTuple.key] = accountTuple.value
+            }
         }
+        return newDict
+    }
+    
+    func filterAccounts1(f : (Account) -> Bool) -> [Int : Account] {
+        return accounts.filterCopy { (key: Int, value: Account) -> Bool in
+            return f(value)
+        }
+    }
+    
+    func filterAccounts2(f : (Account) -> Bool) -> [Int : Account] {
+        return accounts.filterCopy { return f($1)}
     }
     
     func withdraw0(account : Int, ammount : Int) -> Account? {
