@@ -21,3 +21,4 @@ let concatWithComma = ["Str1", "Str2", "Str3"].reduce("") { (acc, next)  in
     return acc + "," + next
 }
 
+
