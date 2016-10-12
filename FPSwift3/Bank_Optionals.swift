@@ -40,7 +40,7 @@ class Bank {
     }
     
     func getBalance3(account : Int) -> Int? {
-        return accounts[account].map {return $0.balance}
+        return accounts[account].map {$0.balance}
     }
     
     func filterAccounts0(f : (Account) -> Bool) -> [Int : Account] {
@@ -55,18 +55,18 @@ class Bank {
     
     func filterAccounts1(f : (Account) -> Bool) -> [Int : Account] {
         return accounts.filterCopy { (key: Int, value: Account) -> Bool in
-            return f(value)
+            f(value)
         }
     }
     
     func filterAccounts2(f : (Account) -> Bool) -> [Int : Account] {
-        return accounts.filterCopy { return f($1)}
+        return accounts.filterCopy { f($1)}
     }
     
-    func withdraw0(account : Int, ammount : Int) -> Account? {
+    func withdraw0(account : Int, amount : Int) -> Account? {
         if let account = accounts[account] {
-            if account.balance >= ammount {
-                let newAccount = Account(id: account.balance, balance: account.balance - ammount)
+            if account.balance >= amount {
+                let newAccount = Account(id: account.balance, balance: account.balance - amount)
                 accounts[newAccount.id] = newAccount //side effect
                 return newAccount
             } else {
@@ -77,37 +77,45 @@ class Bank {
         }
     }
     
-    func withdraw1(account : Int, ammount : Int) -> Account? {
+    func withdraw1(account : Int, amount : Int) -> Account? {
         let account : Account? = accounts[account]
-        let accountWithEnoughBalance : Account? = account.filter {a in return a.balance >= ammount}
+        let accountWithEnoughBalance : Account? = account.filter {a in a.balance >= amount}
         let newAccount : Account? = accountWithEnoughBalance.flatMap { a in
-            return Account(id:a.id, balance:a.balance - ammount)
+            return Account(id:a.id, balance:a.balance - amount)
         }
         newAccount.map {a in accounts[a.id] = a} //side effect
         return newAccount
     }
     
-    func withdraw2(account : Int, ammount : Int) -> Account? {
-        let accountWithEnoughBalance : Account? = accounts[account].filter {return $0.balance >= ammount}
+    func withdraw2(account : Int, amount : Int) -> Account? {
+        let accountWithEnoughBalance : Account? = accounts[account].filter { $0.balance >= amount}
         let newAccount : Account? = accountWithEnoughBalance.flatMap { a in
-            return Account(id:a.id, balance:a.balance - ammount)
+            return Account(id:a.id, balance:a.balance - amount)
         }
         newAccount.map {a in accounts[a.id] = a} //side effect
         return newAccount
     }
     
-    func withdraw3(account : Int, ammount : Int) -> Account? {
-        let accountWithEnoughBalance: Account? = accounts[account].filter {return $0.balance >= ammount}
+    func withdraw3(account : Int, amount : Int) -> Account? {
+        let accountWithEnoughBalance: Account? = accounts[account].filter { $0.balance >= amount}
         let newAccount : Account? = accountWithEnoughBalance.flatMap {
-            return Account(id:$0.id, balance:$0.balance - ammount)}
+             Account(id:$0.id, balance:$0.balance - amount)
+        }
         newAccount.map {accounts[$0.id] = $0} //side effect
         return newAccount
     }
     
-    func withdraw4(account : Int, ammount : Int) -> Account? {
-        let newAccount: Account? = accounts[account].filter { return $0.balance >= ammount}
-                                        .flatMap { return Account(id:$0.id, balance:$0.balance - ammount)}
+    func withdraw4(account : Int, amount : Int) -> Account? {
+        let newAccount: Account? = accounts[account].filter { $0.balance >= amount}
+                                        .flatMap { return Account(id:$0.id, balance:$0.balance - amount)}
         newAccount.map {accounts[$0.id] = $0} //side effect
+        return newAccount
+    }
+
+    func withdraw5(account : Int, amount : Int) -> Account? {
+        let newAccount: Account? = accounts[account].filter {a in a.balance >= amount}
+        .flatMap {a in Account(id:a.id, balance:a.balance - amount)}
+        newAccount.map {a in accounts[a.id] = a} //side effect
         return newAccount
     }
     

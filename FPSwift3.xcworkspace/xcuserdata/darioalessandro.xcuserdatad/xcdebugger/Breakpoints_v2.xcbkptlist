@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
             endingLineNumber = "138"
-            landmarkName = "closeTorax(onResult:)"
+            landmarkName = "insertCoronaryStent(onResult:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -126,7 +126,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
-            endingLineNumber = "147">
+            endingLineNumber = "147"
+            landmarkName = "closeTorax(onResult:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -141,8 +143,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
-            landmarkName = "performHeartSurgery(p:)"
-            landmarkType = "7">
+            landmarkName = "FunctionalAsyncDoctor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -157,8 +159,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
             endingLineNumber = "167"
-            landmarkName = "FunctionalAsyncDoctor"
-            landmarkType = "3">
+            landmarkName = "openTorax(p:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -205,8 +207,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
             endingLineNumber = "146"
-            landmarkName = "LameAsyncDoctor"
-            landmarkType = "3">
+            landmarkName = "closeTorax(onResult:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -220,9 +222,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "performHeartSurgery(p:)"
-            landmarkType = "7">
+            endingLineNumber = "155">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -237,8 +237,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
-            landmarkName = "openTorax(p:)"
-            landmarkType = "7">
+            landmarkName = "FunctionalAsyncDoctor"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

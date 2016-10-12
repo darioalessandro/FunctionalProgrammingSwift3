@@ -38,6 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let s : Int? = 4
         
         print("s = \(s.filter {$0 > 3})")
+        
+        let customFilter = [123:"first",124 : "lasto"].filterCopy {(key,value) in value == "lasto"}
+        print(customFilter)
+
+        let customFilter2 = [123:"first",124 : "lasto"].filterCopy {$1 == "lasto"}
+        print(customFilter2)
+        
         return true
     }
 
