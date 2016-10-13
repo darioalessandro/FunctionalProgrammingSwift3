@@ -106,15 +106,13 @@ class Bank {
     }
     
     func withdraw4(account : Int, amount : Int) -> Account? {
-        let newAccount: Account? =  accounts[account]
-                                    .filter { $0.balance >= amount}
-                                    .flatMap { Account(id:$0.id, balance:$0.balance - amount)}
-                                    .flatMap {
-                                        accounts[$0.id] = $0 //side effect
-                                        return $0
-                                    }
-        
-        return newAccount
+        return  accounts[account]
+                .filter { $0.balance >= amount}
+                .flatMap { Account(id:$0.id, balance:$0.balance - amount)}
+                .flatMap {
+                    accounts[$0.id] = $0 //side effect
+                    return $0
+                }
     }
 
     func withdraw5(account : Int, amount : Int) -> Account? {
